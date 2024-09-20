@@ -49,11 +49,3 @@ RSpec.configure do |config|
     Amigo.reset_logging
   end
 end
-
-# See https://github.com/mperham/sidekiq/issues/5510
-# Once it's fixed we can remove.
-class String
-  def constantize
-    return Sidekiq::Testing.constantize(self)
-  end
-end
