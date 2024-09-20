@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "redis"
+require "redis-client"
 require "sidekiq"
 require "sidekiq-cron"
 

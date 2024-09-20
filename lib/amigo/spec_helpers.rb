@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "amigo"
-require "sidekiq/worker"
+require "sidekiq/job"
 
 module Amigo
   module SpecHelpers
@@ -256,11 +256,11 @@ module Amigo
     # This allows those arbitrary job payload fields
     # to be included when the job is run.
     module_function def sidekiq_perform_inline(klass, args, item=nil)
-      Sidekiq::Worker::Setter.override_item = item
+      Sidekiq::Job::Setter.override_item = item
       begin
         klass.perform_inline(*args)
       ensure
-        Sidekiq::Worker::Setter.override_item = nil
+        Sidekiq::Job::Setter.override_item = nil
       end
     end
 
